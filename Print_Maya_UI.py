@@ -25,20 +25,20 @@ def create_customUI():
     cmds.menuItem( label='front' )
     cmds.menuItem( label='persp' )
     cmds.text('text_zoom',label='Zoom',w=w_interface/4)
-    cmds.floatField('zoom_value',minValue= 0 , maxValue= 20,precision=2,w= w_interface/4)
+    cmds.floatField('zoom_value',minValue= 0 , maxValue= 100,precision=2,w= w_interface/4, editable=True)
     
     cmds.separator(p='title_layout', height=5, style='in')
         
     cmds.rowLayout('second_line',nc=3, w=w_interface, p= 'title_layout')
     cmds.text('text_angle',label='Angle',w=w_interface/4)
     cmds.floatField('angle_value',minValue= 0 , maxValue= 90,precision=2,w= w_interface/4,editable=False)
-    cmds.radioButtonGrp('Type_File',cw2=(65,65), labelArray2=['Prop', 'Character'], numberOfRadioButtons=2, w=w_interface/2,select=1)
+    cmds.radioButtonGrp('Type_File',cw2=(65,65), labelArray2=['Print', 'Icon'], numberOfRadioButtons=2, w=w_interface/2,select=1)
 
     cmds.separator(p='title_layout', height=5, style='in')
 
-    cmds.rowLayout('last_line',nc=2, w=w_interface, p= 'title_layout')
-    cmds.button(l='Start',w= w_interface/2, c=Print_Maya.run)
+    cmds.rowLayout('last_line',nc=3, w=w_interface, p= 'title_layout')
+    cmds.button(l='Start',w= w_interface/2, c=Print_Maya.Run_run)
     cmds.button(l='Example',w= w_interface/2, c=Print_Maya.example)
-
+    #cmds.button(l='sample',w= w_interface/3, c=Print_Maya.example_bar)
 
 lunch_ui()
