@@ -25,7 +25,7 @@ def create_customUI():
     cmds.menuItem( label='front' )
     cmds.menuItem( label='persp' )
     cmds.text('text_zoom',label='Zoom',w=w_interface/4)
-    cmds.floatField('zoom_value',minValue= 0 , maxValue= 100,precision=2,w= w_interface/4, editable=True)
+    cmds.floatField('zoom_value',minValue= -25 , maxValue= 100,precision=2,w= w_interface/4, editable=True)
     
     cmds.separator(p='title_layout', height=5, style='in')
         

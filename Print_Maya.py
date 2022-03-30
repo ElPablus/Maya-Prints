@@ -5,7 +5,7 @@ import os
 
 def example(*args):
 
-    fname = cmds.file(query=True, sceneName=True)
+    fname =cmds.file(query=True, l=True)[0]
     filename = os.path.basename(fname)
     raw_name, extension = os.path.splitext(filename)
     filepath, namefile = os.path.split(fname)
@@ -65,7 +65,7 @@ def enable_angle(*args):
 
 def Run_run(*args):
     
-    fname = cmds.file(query=True, sceneName=True)
+    fname = cmds.file(query=True, l=True)[0]
     filename = os.path.basename(fname)
     raw_name, extension = os.path.splitext(filename)
     filepath, namefile = os.path.split(fname)
@@ -83,7 +83,7 @@ def Run_run(*args):
         with_photo= 600
         height_photo= 600
         
-    cmds.progressWindow(title='Waiting',progress=amount,status='Progress: 0%',isInterruptable=True )
+    cmds.progressWindow('proress',title='Waiting',progress=amount,status='Progress: 0%',isInterruptable=True )
     while count < len_bar :
         
         camera_angle= cmds.floatField('angle_value',query=True, value=True)*-1
@@ -130,13 +130,11 @@ def Run_run(*args):
         
         time.sleep(5)
         
-        if cmds.progressWindow(query=True, isCancelled=True ) :
+        if cmds.progressWindow('proress',query=True, isCancelled=True ) :
             cmds.warning('Interrumpido')
             break
 
-        # Check if end condition has been reached
-        if cmds.progressWindow(query=True, progress=True ) >= 100 :
-            cmds.warning('Finalizado')
-            break
+
         
-        cmds.progressWindow(edit=True, progress=amount, status=('Sleeping: ' + str(amount) + '%' ) )
+        cmds.progressWindow('proress',edit=True, progress=amount, status=('Sleeping: ' + str(amount) + '%' ) )
+    cmds.progressWindow('proress',endProgress=1)
