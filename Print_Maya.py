@@ -83,7 +83,7 @@ def Run_run(*args):
         with_photo= 600
         height_photo= 600
         
-    cmds.progressWindow('proress',title='Waiting',progress=amount,status='Progress: 0%',isInterruptable=True )
+    cmds.progressWindow(title='Waiting',progress=amount,status='Progress: 0%',isInterruptable=True )
     while count < len_bar :
         
         camera_angle= cmds.floatField('angle_value',query=True, value=True)*-1
@@ -130,11 +130,14 @@ def Run_run(*args):
         
         time.sleep(5)
         
-        if cmds.progressWindow('proress',query=True, isCancelled=True ) :
+        if cmds.progressWindow(query=True, isCancelled=True ) :
             cmds.warning('Interrumpido')
             break
 
-
+        # Check if end condition has been reached
+        if cmds.progressWindow(query=True, progress=True ) >= 100 :
+            cmds.warning('Finalizado')
+            break
         
-        cmds.progressWindow('proress',edit=True, progress=amount, status=('Sleeping: ' + str(amount) + '%' ) )
-    cmds.progressWindow('proress',endProgress=1)
+        cmds.progressWindow(edit=True, progress=amount, status=('Sleeping: ' + str(amount) + '%' ) )
+    cmds.progressWindow(endProgress=1)
